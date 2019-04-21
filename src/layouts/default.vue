@@ -47,20 +47,17 @@
 
 <script lang="ts">
 import {openURL} from 'quasar'
+import {Vue, Component} from 'vue-property-decorator'
 
-import Vue from 'vue'
+@Component
+export default class Default extends Vue {
+  leftDrawerOpen: boolean = true
+  beforeCreate() {
+    this.leftDrawerOpen = this.$q.platform.is.desktop
+  }
 
-export default Vue.extend({
-  name: 'MyLayout',
-  data() {
-    return {
-      leftDrawerOpen: this.$q.platform.is.desktop,
-    }
-  },
-  methods: {
-    openURL,
-  },
-})
+  openURL = openURL
+}
 </script>
 
 <style>
