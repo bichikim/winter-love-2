@@ -6,15 +6,17 @@ const {resolve} = require('path')
 const srcAlias = '@'
 const layoutPath = 'layouts'
 const pagesPath = 'pages'
-const middlewarePath = 'pages'
+const middlewarePath = 'middleware'
+const configFile = 'tsconfig.json'
 
-module.exports = function(ctx) {
+module.exports = function(context) {
   return {
     // app boot file (/src/boot)
     // --> boot files are part of "main.js"
     boot: [
       'i18n',
       'axios',
+      'middleware',
     ],
 
     css: [
@@ -64,6 +66,10 @@ module.exports = function(ctx) {
 
     supportIE: true,
 
+    sourceFiles: {
+      indexHtmlTemplate: 'src/index.pug',
+    },
+
     build: {
       env: {
         VUE_LAYOUTS_PATH: JSON.stringify(layoutPath),
@@ -74,7 +80,7 @@ module.exports = function(ctx) {
       scopeHoisting: true,
       vueRouterMode: 'history',
       // vueCompiler: true,
-      // gzip: true,
+      gzip: true,
       // analyze: true,
       // extractCSS: false,
       extendWebpack(config) {
@@ -87,7 +93,7 @@ module.exports = function(ctx) {
         })
         // typescript
         config.resolve.plugins = [new TsconfigPathsWebpackPlugin({
-          configFile: 'tsconfig.json',
+          configFile,
         })]
         if(!config.resolve.extensions){config.resolve.extensions = []}
         config.resolve.alias['@'] = resolve('src')
@@ -104,7 +110,7 @@ module.exports = function(ctx) {
               options: {
                 appendTsSuffixTo: [/\.vue$/],
                 transpileOnly: true,
-                configFile: 'tsconfig.json',
+                configFile,
               },
             },
           ],

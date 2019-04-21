@@ -1,3 +1,10 @@
+<route-meta>
+  {
+  "middleware": "authenticated"
+  }
+</route-meta>
+
+
 <template>
   <q-page class="flex flex-center">
     <img
@@ -13,10 +20,10 @@
 <script lang="ts">
 import {Vue, Component} from 'vue-property-decorator'
 
-@Component({
-  // layout: 'default',
-})
+@Component
 export default class Index extends Vue {
-
+  mounted() {
+    //
+  }
 }
 </script>

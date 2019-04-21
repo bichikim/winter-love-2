@@ -1,15 +1,17 @@
-<template>
-  <div id="q-app">
-    <router-view />
-  </div>
+<template lang="pug">
+  #q-app
+    router-view
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import {Component, Vue} from 'vue-property-decorator'
 
-export default Vue.extend({
-  name: 'App',
-})
+@Component
+export default class App extends Vue {
+  beforeCreate() {
+    //
+  }
+}
 </script>
 
 <style>

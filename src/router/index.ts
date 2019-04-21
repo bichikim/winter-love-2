@@ -13,12 +13,12 @@ Vue.use(VueRouter)
  */
 
 export default function(context: any) {
-  const {store} = context
+  const {app, store} = context
   const routerLayout = createRouterLayout((layout) => {
     return import(`${process.env.WEBPACK_SRC_ALIAS}/${process.env.VUE_LAYOUTS_PATH}/${layout}.vue`)
   })
 
-  const router = new VueRouter({
+  return new VueRouter({
     scrollBehavior: () => ({x: 0, y: 0}),
     routes: [
       {
@@ -34,8 +34,4 @@ export default function(context: any) {
     mode: process.env.VUE_ROUTER_MODE,
     base: process.env.VUE_ROUTER_BASE,
   })
-
-  middleware<any, any>({app: {}, store, router})
-
-  return router
 }

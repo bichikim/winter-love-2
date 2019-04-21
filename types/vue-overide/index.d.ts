@@ -3,7 +3,7 @@ import Vue from 'vue'
 
 declare module 'vue/types/vue' {
   interface QuasarQ {
-
+    platform: any
   }
 
   interface Vue {
