@@ -1,4 +1,4 @@
-# winter-love-3
+# winter-love-vue-cli
 
 ## Project setup
 ```
